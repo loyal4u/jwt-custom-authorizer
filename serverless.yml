@@ -1,0 +1,14 @@
+service: jwt-custom-authorizer
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: us-east-1
+
+functions:
+  jwt-custom-authorizer:
+    handler: handler.authorize
