@@ -1,0 +1,14 @@
+{
+  "name": "jwt-custom-authorizer",
+  "version": "1.0.0",
+  "description": "An AWS Custom Authorizer for AWS API Gateway that supports JSON Web Tokens (JWT)",
+  "author": "Diogo Nicoleti <diogo.nicoleti@gmail.com>",
+  "scripts": {
+    "deploy": "./node_modules/.bin/serverless deploy"
+  },
+  "devDependencies": {
+    "serverless": "^1.33.2",
+    "serverless-offline": "^3.31.3",
+    "serverless-python-requirements": "^4.2.5"
+  }
+}
