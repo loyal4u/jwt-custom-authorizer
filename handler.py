@@ -2,21 +2,26 @@ import jwt
 
 
 def authorize(event, context):
-    token = event.get('authorizationToken')
-    if not token:
-        unauthorized('Authentication token is missing')
+    authorizationToken = event.get('authorizationToken')
+    if not authorizationToken:
+        unauthorized('Token is missing')
+
+    token_parts = authorizationToken.split(' ')
+    schema = token_parts[0]
+    token = token_parts[1]
+
+    if not (schema.lower() == 'bearer' and token):
+        unauthorized('Failing due to invalid schema or missing token')
 
     try:
         payload = decode_jwt_token(token)
         return auth_response(payload, 'Allow', event.get('methodArn'))
     except jwt.ExpiredSignatureError:
-        unauthorized('Authentication token is expired')
+        unauthorized('Token is expired')
     except jwt.InvalidSignatureError:
-        unauthorized('Authentication token is invalid')
+        unauthorized('Token is invalid')
     except (jwt.InvalidAudienceError, jwt.InvalidIssuerError):
         unauthorized('Incorrect claims, please check the audience and issuer')
-    except:
-        unauthorized('Unable to parse authentication token')
 
 
 def unauthorized(message):
