@@ -1,0 +1,5 @@
+{
+    "type":"TOKEN",
+    "authorizationToken":"{JWT_TOKEN}",
+    "methodArn":"arn:aws:execute-api:us-east-1:272902523721:phykvsass1/ESTestInvoke-stage/GET/"
+}

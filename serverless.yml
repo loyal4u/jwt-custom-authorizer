@@ -8,7 +8,14 @@ provider:
   name: aws
   runtime: python3.6
   region: us-east-1
+  deploymentBucket: loyal4u-lambda
 
 functions:
   jwt-custom-authorizer:
     handler: handler.authorize
+    name: jwt-custom-authorizer
+    description: An AWS Custom Authorizer for AWS API Gateway that supports JSON Web Tokens (JWT)
+
+package:
+  exclude:
+    - node_modules/**
